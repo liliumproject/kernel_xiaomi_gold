@@ -627,7 +627,11 @@ struct extent_info {
 			unsigned long long last_blocks;
 		};
 	};
+#if IS_ENABLED(CONFIG_ARM)
+} __packed;
+#else
 };
+#endif
 
 struct extent_node {
 	struct rb_node rb_node;		/* rb node located in rb-tree */
@@ -1286,7 +1290,6 @@ enum {
 	GC_IDLE_AT,
 	GC_URGENT_HIGH,
 	GC_URGENT_LOW,
-	GC_URGENT_MID,
 	MAX_GC_MODE,
 };
 
@@ -2754,9 +2757,6 @@ static inline bool is_idle(struct f2fs_sb_info *sbi, int type)
 
 	if (is_inflight_io(sbi, type))
 		return false;
-
-	if (sbi->gc_mode == GC_URGENT_MID)
-		return true;
 
 	if (sbi->gc_mode == GC_URGENT_LOW &&
 			(type == DISCARD_TIME || type == GC_TIME))
