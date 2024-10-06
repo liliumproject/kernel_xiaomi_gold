@@ -54,7 +54,7 @@ static struct ecc_curve nist_p256 = {
 	.b = nist_p256_b
 };
 
-/* N17 code for HQ-293392 by tongjiacheng at 20230427 start */
+
 /* NIST P-384 */
 static u64 nist_p384_g_x[] = { 0x3A545E3872760AB7ull, 0x5502F25DBF55296Cull,
 				0x59F741E082542A38ull, 0x6E1D3B628BA79B98ull,
@@ -103,5 +103,5 @@ static const struct ecc_curve ecc_25519 = {
 	.p = curve25519_p,
 	.a = curve25519_a,
 };
-/* N17 code for HQ-293392 by tongjiacheng at 20230427 end */
+
 #endif
